@@ -73,6 +73,7 @@ DIST_ARCHIVE_REPOS = [
     "async_profiler_linux_x64",
     "async_profiler_macos",
     "bazel_lib",
+    "bats_core",
 ]]
 
 ##################################################################################
@@ -217,3 +218,8 @@ copy_file(
 # This is an extension (instead of use_repo_rule usages) only to create a
 # lockfile entry for the distribution repo module extension.
 async_profiler_repos = module_extension(_async_profiler_repos)
+
+def _dist_repos_impl(ctx):
+    bats_core_deps()
+
+dist_repos = module_extension(_dist_repos_impl)
